@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Vue 双向绑定demo</title>
+</head>
+<body>
+    <div id="app">
+        <h2>{{title}}</h2>
+        <h1>{{name}}</h1>
+        <input v-model="name">
+        <button v-on:click="handleClick">点我</button>
+    </div>
+</body>
+    <script src="./js/observer.js"></script>
+    <script src="./js/watcher.js"></script>
+    <script src="./js/compile.js"></script>
+    <script src="./js/index.js"></script>
+    <script type="text/javascript">
+    
+        var selfVue = new SelfVue({
+            el: '#app',
+            data: {
+                title: 'hello world',
+                name: '',
+            },
+            mounted() {
+                console.log('这是mounted')
+            },
+            methods: {
+                handleClick() {
+                    console.log('Click事件触发')
+                    this.name = 'Click'
+                }
+            },
+        });
+    
+        window.setTimeout(function () {
+            selfVue.title = '你好';
+        }, 3000);
+    
+        window.setTimeout(function () {
+            selfVue.name = 'canfoo';
+        }, 3000);
+    </script>
+</html>
